@@ -49,7 +49,7 @@
             align-items: center;
             justify-content: center;
             padding: 1rem;
-            background: rgba(255, 255, 255, 0.8); /* Fallback background */
+            background: rgba(255, 255, 255, 0.8);
         }
         .min-h-screen { min-height: 100vh; }
         .flex { display: flex; }
@@ -150,22 +150,15 @@
                 }, [view, range, category, bank]);
 
                 const generateSubRanges = (min, max) => {
-                    const fixedRanges = [
-                        { start: 500, end: 750 },
-                        { start: 1000, end: 1500 },
-                        { start: 2000, end: 2500 }
-                    ];
-                    const availableRanges = fixedRanges.filter(r => r.end <= max && r.start >= min);
-                    console.log("Generated sub-ranges for min:", min, "max:", max, "available:", availableRanges);
-                    if (availableRanges.length === 0) {
-                        console.warn("No valid sub-ranges for range", min, "-", max);
-                        return [{ start: min, end: max }]; // Fallback to full range
+                    // Hardcode sub-ranges for 0-2500 range only
+                    if (min === 0 && max === 2500) {
+                        return [
+                            { start: 500, end: 750 },
+                            { start: 1000, end: 1500 },
+                            { start: 2000, end: 2500 }
+                        ];
                     }
-                    for (let i = availableRanges.length - 1; i > 0; i--) {
-                        const j = Math.floor(Math.random() * (i + 1));
-                        [availableRanges[i], availableRanges[j]] = [availableRanges[j], availableRanges[i]];
-                    }
-                    return availableRanges;
+                    return []; // No sub-ranges for other ranges
                 };
 
                 const generateOrderId = () => {
@@ -227,9 +220,12 @@
                         const availableSubRanges = generateSubRanges(range.min, range.max);
                         const assignedSubRanges = {};
                         filteredLogs.forEach((log, index) => {
-                            const rangeIndex = index % availableSubRanges.length;
-                            const { start, end } = availableSubRanges[rangeIndex] || { start: range.min, end: range.max };
-                            assignedSubRanges[log.id] = `${start.toLocaleString()} - $${end.toLocaleString()}`;
+                            if (range.min === 0 && range.max === 2500 && index < availableSubRanges.length) {
+                                const { start, end } = availableSubRanges[index];
+                                assignedSubRanges[log.id] = `${start.toLocaleString()} - $${end.toLocaleString()}`;
+                            } else {
+                                assignedSubRanges[log.id] = "N/A"; // Only apply fixed ranges to 0-2500
+                            }
                         });
                         setSubRanges(assignedSubRanges);
                     }
@@ -256,7 +252,7 @@
                             ) : (
                                 <div className="space-y-4">
                                     {filteredLogs.map((log) => {
-                                        const subRange = subRanges[log.id] || `${range.min.toLocaleString()} - $${range.max.toLocaleString()}`;
+                                        const subRange = subRanges[log.id] || "N/A";
                                         return (
                                             <div key={log.id} className="border p-4 rounded">
                                                 <p>🆔 ID: {log.id}</p>
