@@ -22,7 +22,7 @@
     </script>
     <style>
         body {
-            background: url('https://i.imgur.com/CoYUCfx.jpeg') no-repeat center center fixed;
+            background: url('https://i.imgur.com/EKKOCbj.jpeg') no-repeat center center fixed;
             background-size: cover;
             font-family: ui-sans-serif, system-ui, sans-serif;
         }
@@ -33,7 +33,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('https://i.imgur.com/CoYUCfx.jpeg') no-repeat center center fixed;
+            background: url('https://i.imgur.com/EKKOCbj.jpeg') no-repeat center center fixed;
             background-size: cover;
             z-index: -1;
             opacity: 0;
@@ -214,7 +214,6 @@
                 { id: "104", category: "Bank", bank: "Huntington", balance: 28000, price: 1350, stock: 1 },
             ];
 
-
             const App = () => {
                 const [logs, setLogs] = React.useState(initialLogs);
                 console.log("App component initialized with logs:", logs);
@@ -282,7 +281,7 @@
 
                 const confirmRange = () => {
                     if (!range) return <div className="text-red-600 p-4">Error: Range not set</div>;
-                    const filteredLogs = logs.filter((log) => log.category === category && log.bank === (bank || category) && log.balance >= range.min && log.balance <= range.max && log.  > 0);
+                    const filteredLogs = logs.filter((log) => log.category === category && log.bank === (bank || category) && log.balance >= range.min && log.balance <= range.max && log.stock > 0);
                     console.log("Filtered Logs by Range:", filteredLogs);
 
                     return (
@@ -297,7 +296,7 @@
 
                 const showLogs = () => {
                     if (!range) return <div className="text-red-600 p-4">Error: Range not set</div>;
-                    const filteredLogs = logs.filter((log) => log.category === category && log.bank === (bank || category) && log.balance >= range.min && log.balance <= range.max && log.  > 0);
+                    const filteredLogs = logs.filter((log) => log.category === category && log.bank === (bank || category) && log.balance >= range.min && log.balance <= range.max && log.stock > 0);
                     console.log("Displaying Logs by Range:", filteredLogs);
                     return (
                         <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
@@ -312,7 +311,7 @@
                                             <p>🏦 Bank: {log.bank}</p>
                                             <p>💰 Balance: ${log.balance.toLocaleString()}</p>
                                             <p>💲 Price: ${log.price.toLocaleString()}</p>
-                                            <p>📦  : {log. } available</p>
+                                            <p>📦 Stock: {log.stock} available</p>
                                             <button onClick={() => { setSelectedLog(log); setOrderId(generateOrderId()); setView("purchase"); }} className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 mt-2">🛒 Buy</button>
                                         </div>
                                     ))}
@@ -326,11 +325,11 @@
                 const showPurchase = () => {
                     if (!selectedLog) return <div className="text-red-600 p-4">Error: No log selected</div>;
                     const currentLog = logs.find(log => log.id === selectedLog.id);
-                    if (!currentLog || currentLog.  <= 0) {
+                    if (!currentLog || currentLog.stock <= 0) {
                         return (
                             <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
                                 <h2 className="text-xl font-bold mb-4">🛒 Purchase Log</h2>
-                                <p className="text-red-600 p-4">❌ This log is out of  .</p>
+                                <p className="text-red-600 p-4">❌ This log is out of stock.</p>
                                 <button onClick={() => setView("logs")} className="mt-4 w-full bg-gray-500 text-white py-2 rounded hover:bg-gray-600">🔙 Back</button>
                             </div>
                         );
@@ -345,7 +344,7 @@
                             <p>💲 Price: ${currentLog.price.toLocaleString()}</p>
                             <p>🪙 Send {btcAmount} BTC to: {BTC_ADDRESS}</p>
                             <p>🆔 Order ID: {orderId || "Generating..."}</p>
-                            <p className="text-gray-600 mb-4">📩 Enter your email to receive details:</p>
+                            <p className="text-gray-600 mb-4">📩 Enter your email to receive details (mock delivery):</p>
                             <input
                                 type="email"
                                 value={email}
@@ -357,10 +356,10 @@
                                 onClick={() => {
                                     if (email) {
                                         const updatedLogs = logs.map(log =>
-                                            log.id === currentLog.id ? { ...log,  : log.  - 1 } : log
+                                            log.id === currentLog.id ? { ...log, stock: log.stock - 1 } : log
                                         );
                                         setLogs(updatedLogs);
-                                        alert(`🎉 Order ${orderId} confirmed! Details sent to ${email}. Verify payment at ${BTC_ADDRESS}.`);
+                                        alert(`🎉 Order ${orderId} confirmed! Details sent to ${email} (mock delivery). Verify payment at ${BTC_ADDRESS}.`);
                                         setView("categories");
                                         setEmail("");
                                         setSelectedLog(null);
