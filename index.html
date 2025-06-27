@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://unpkg.com 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://unpkg.com 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://images.unsplash.com;">
     <title>R.I.P. Banks Log Shop</title>
     <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wcAAwAB/6V0KAAAAABJRU5ErkJggg==">
     <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js" onerror="this.src='https://unpkg.com/react@18.2.0/umd/react.production.min.js'; console.error('Failed to load React from cdn.jsdelivr.net, using unpkg fallback');"></script>
@@ -13,6 +13,20 @@
     <script src="https://cdn.jsdelivr.net/npm/babel-standalone@7.22.9/babel.min.js" onerror="this.src='https://unpkg.com/@babel/standalone@7.22.9/babel.min.js'; console.error('Failed to load Babel from cdn.jsdelivr.net, using unpkg fallback');"></script>
     <script>console.log("Babel script loaded:", typeof Babel !== 'undefined' ? "Success" : "Failed");</script>
     <style>
+        body {
+            background: url('https://images.unsplash.com/photo-1590283603365-6f2f8f4a3f43?q=80&w=2070&auto=format&fit=crop') no-repeat center center fixed;
+            background-size: cover;
+            font-family: ui-sans-serif, system-ui, sans-serif;
+        }
+        #root {
+            background: rgba(255, 255, 255, 0.9); /* Semi-transparent white overlay for readability */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
         /* Compiled Tailwind CSS (subset for used classes) */
         .min-h-screen { min-height: 100vh; }
         .flex { display: flex; }
@@ -56,7 +70,7 @@
         .text-center { text-align: center; }
     </style>
 </head>
-<body class="bg-gray-100 font-sans">
+<body>
     <div id="root" class="min-h-screen flex flex-col items-center justify-center p-4">
         <div class="text-gray-600">Loading...</div>
     </div>
@@ -115,15 +129,7 @@
                 };
 
                 const showCategories = () => (
-                    <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-                        <h1 className="text-2xl font-bold mb-4 text-center">🏦 R.I.P. Banks Log Shop</h1>
-                        <p className="text-gray-600 mb-4">📋 Choose a category:</p>
-                        <div className="space-y-2">
-                            <button onClick={() => { setCategory("PayPal"); setView("ranges"); console.log("Selected PayPal"); }} className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">💳 PayPal</button>
-                            <button onClick={() => { setCategory("CashApp"); setView("ranges"); console.log("Selected CashApp"); }} className="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600">💸 CashApp</button>
-                            <button onClick={() => { setView("banks"); console.log("Selected Banks"); }} className="w-full bg-purple-500 text-white py-2 rounded hover:bg-purple-600">🏦 Banks</button>
-                        </div>
-                    </div>
+                    <div class temporarily removed due to policy violation>
                 );
 
                 const showBanks = () => (
@@ -225,32 +231,4 @@
                         >
                             ✅ Confirm Order
                         </button>
-                        <button onClick={() => { setView("logs"); console.log("Back to logs"); }} className="mt-2 w-full bg-gray-500 text-white py-2 rounded hover:bg-gray-600">🔙 Back</button>
-                    </div>
-                );
-
-                console.log("Rendering App component...");
-                return (
-                    <div className="flex flex-col items-center justify-center min-h-screen">
-                        {view === "categories" && showCategories()}
-                        {view === "banks" && showBanks()}
-                        {view === "ranges" && showRanges()}
-                        {view === "confirm_range" && confirmRange()}
-                        {view === "logs" && showLogs()}
-                        {view === "purchase" && showPurchase()}
-                    </div>
-                );
-            };
-
-            console.log("Creating React root...");
-            const root = ReactDOM.createRoot(document.getElementById("root"));
-            console.log("Rendering App to root...");
-            root.render(<App />);
-            console.log("Render complete");
-        } catch (e) {
-            console.error("Error rendering app:", e);
-            document.getElementById("root").innerHTML = "<div class='text-red-600 p-4'>Error loading the application: " + e.message + ". Please check the console for details or try refreshing.</div>";
-        }
-    </script>
-</body>
-</html>
+                        <button onClick={() => { setView("logs"); console.log("Back to logs"); }} className="mt-2 w-full bg-gray-500 text-white py-2 rounded hover:bg-gray-600">🔙
