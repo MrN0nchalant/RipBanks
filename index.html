@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; style-src-elem 'self' 'unsafe-inline';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://i.imgur.com; style-src-elem 'self' 'unsafe-inline';">
     <title>R.I.P. Banks Log Shop</title>
     <link rel="icon" type="image/png" href="/favicon.png" onerror="this.href='https://i.imgur.com/1vtVZRq.png'; console.error('Local favicon failed, using fallback');">
     <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js" onerror="this.src='https://unpkg.com/react@18.2.0/umd/react.production.min.js'; this.onerror=()=>{this.src='https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js'; console.error('React fallback to cdnjs');}"></script>
@@ -41,6 +41,10 @@
         }
         body.loaded::before {
             opacity: 1;
+        }
+        body.bg-fallback::before {
+            background: url('https://wallpapers.com/images/hd/cryptocurrency-background-n1du4d5fk0ur7wqp.jpg') no-repeat center center fixed;
+            background-size: cover;
         }
         #root {
             min-height: 100vh;
@@ -227,7 +231,14 @@
 
                 React.useEffect(() => {
                     console.log("View changed to:", view, "Range:", range, "Category:", category, "Bank:", bank);
-                }, [view, range, category, bank]);
+                    const img = new Image();
+                    img.src = '/background.jpg';
+                    img.onload = () => console.log("Local background loaded successfully");
+                    img.onerror = () => {
+                        console.error("Local background failed to load, applying fallback");
+                        document.body.classList.add('bg-fallback');
+                    };
+                }, []);
 
                 const generateOrderId = () => {
                     const id = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
