@@ -22,7 +22,7 @@
     </script>
     <style>
         body {
-            background: url('/background.jpg') no-repeat center center fixed;
+            background: url('https://i.imgur.com/jDx3AA2.jpg') no-repeat center center fixed;
             background-size: cover;
             font-family: ui-sans-serif, system-ui, sans-serif;
         }
@@ -33,7 +33,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('/background.jpg') no-repeat center center fixed;
+            background: url('https://i.imgur.com/jDx3AA2.jpg') no-repeat center center fixed;
             background-size: cover;
             z-index: -1;
             opacity: 0;
@@ -41,10 +41,6 @@
         }
         body.loaded::before {
             opacity: 1;
-        }
-        body.bg-fallback::before {
-            background: url('https://wallpapers.com/images/hd/cryptocurrency-background-n1du4d5fk0ur7wqp.jpg') no-repeat center center fixed;
-            background-size: cover;
         }
         #root {
             min-height: 100vh;
@@ -231,14 +227,7 @@
 
                 React.useEffect(() => {
                     console.log("View changed to:", view, "Range:", range, "Category:", category, "Bank:", bank);
-                    const img = new Image();
-                    img.src = '/background.jpg';
-                    img.onload = () => console.log("Local background loaded successfully");
-                    img.onerror = () => {
-                        console.error("Local background failed to load, applying fallback");
-                        document.body.classList.add('bg-fallback');
-                    };
-                }, []);
+                }, [view, range, category, bank]);
 
                 const generateOrderId = () => {
                     const id = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
@@ -254,9 +243,9 @@
                         <h1 className="text-2xl font-bold mb-4 text-center">💵 R.I.P. Banks Log Shop</h1>
                         <p className="text-gray-600 mb-4">📋 Choose a category:</p>
                         <div className="space-y-2">
-                            <button onClick={() => { setCategory("PayPal"); setView("ranges"); }} className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">💳 PayPal</button>
-                            <button onClick={() => { setCategory("CashApp"); setView("ranges"); }} className="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600">💸 CashApp</button>
-                            <button onClick={() => { setView("banks"); }} className="w-full bg-purple-500 text-white py-2 rounded hover:bg-purple-600">🏦 Banks</button>
+                            <button onClick={() => { setCategory("PayPal"); setView("ranges"); setBank(null); }} className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">💳 PayPal</button>
+                            <button onClick={() => { setCategory("CashApp"); setView("ranges"); setBank(null); }} className="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600">💸 CashApp</button>
+                            <button onClick={() => { setView("banks"); setBank(null); }} className="w-full bg-purple-500 text-white py-2 rounded hover:bg-purple-600">🏦 Banks</button>
                         </div>
                     </div>
                 );
@@ -269,7 +258,7 @@
                                 <button key={b} onClick={() => { setBank(b); setCategory("Bank"); setView("ranges"); }} className="bg-purple-500 text-white py-2 rounded hover:bg-purple-600">{b}</button>
                             ))}
                         </div>
-                        <button onClick={() => setView("categories")} className="mt-4 w-full bg-gray-500 text-white py-2 rounded hover:bg-gray-600">🔙 Back</button>
+                        <button onClick={() => { setView("categories"); setBank(null); }} className="mt-4 w-full bg-gray-500 text-white py-2 rounded hover:bg-gray-600">🔙 Back</button>
                     </div>
                 );
 
@@ -286,7 +275,7 @@
                                 <button key={r.name} onClick={() => { setRange(r); setView("confirm_range"); }} className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">{r.name}</button>
                             ))}
                         </div>
-                        <button onClick={() => setView(category === "Bank" ? "banks" : "categories")} className="mt-4 w-full bg-gray-500 text-white py-2 rounded hover:bg-gray-600">🔙 Back</button>
+                        <button onClick={() => { setView(category === "Bank" ? "banks" : "categories"); setBank(category === "Bank" ? bank : null); }} className="mt-4 w-full bg-gray-500 text-white py-2 rounded hover:bg-gray-600">🔙 Back</button>
                     </div>
                 );
 
