@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://images.unsplash.com https://i.imgur.com; style-src-elem 'self' 'unsafe-inline'; connect-src 'self' https://api.coingecko.com;">
-    <title>R.I.P. Banks Log Shop (Mock)</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://images.unsplash.com https://i.imgur.com; style-src-elem 'self' 'unsafe-inline';">
+    <title>R.I.P. Banks Log Shop</title>
     <link rel="icon" type="image/png" href="https://i.imgur.com/1vtVZRq.png">
-    <script src="https://cdn.jsdelivr.net/npm/react@18.3.0/umd/react.production.min.js" onerror="this.src='https://unpkg.com/react@18.3.0/umd/react.production.min.js'; console.error('Failed to load React, falling back to unpkg'); this.onerror = () => { this.src='https://cdnjs.cloudflare.com/ajax/libs/react/18.3.0/umd/react.production.min.js'; console.error('All React fallbacks failed'); document.getElementById('root').innerHTML = '<div class=\"text-red-600 p-4\">Error: Failed to load React. Please try refreshing or check your network.</div>'; }"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js" onerror="this.src='https://unpkg.com/react@18.2.0/umd/react.production.min.js'; console.error('Failed to load React, falling back to unpkg'); this.onerror = () => { this.src='https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js'; console.error('All React fallbacks failed'); }"></script>
     <script>console.log("React script loaded:", typeof React !== 'undefined' ? "Success" : "Failed");</script>
-    <script src="https://cdn.jsdelivr.net/npm/react-dom@18.3.0/umd/react-dom.production.min.js" onerror="this.src='https://unpkg.com/react-dom@18.3.0/umd/react-dom.production.min.js'; console.error('Failed to load ReactDOM, falling back to unpkg'); this.onerror = () => { this.src='https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.0/umd/react-dom.production.min.js'; console.error('All ReactDOM fallbacks failed'); document.getElementById('root').innerHTML = '<div class=\"text-red-600 p-4\">Error: Failed to load ReactDOM. Please try refreshing or check your network.</div>'; }"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js" onerror="this.src='https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js'; console.error('Failed to load ReactDOM, falling back to unpkg'); this.onerror = () => { this.src='https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js'; console.error('All ReactDOM fallbacks failed'); }"></script>
     <script>console.log("ReactDOM script loaded:", typeof ReactDOM !== 'undefined' ? "Success" : "Failed");</script>
-    <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.26.0/babel.min.js" onerror="this.src='https://unpkg.com/@babel/standalone@7.26.0/babel.min.js'; console.error('Failed to load Babel from cdn.jsdelivr.net, trying unpkg fallback'); this.onerror = () => { this.src='https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.26.0/babel.min.js'; console.error('All Babel fallbacks failed'); document.getElementById('root').innerHTML = '<div class=\"text-red-600 p-4\">Error: Failed to load Babel. Please try refreshing or check your network.</div>'; }"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.26.0/babel.min.js" onerror="this.src='https://unpkg.com/@babel/standalone@7.26.0/babel.min.js'; console.error('Failed to load Babel from cdn.jsdelivr.net, trying unpkg fallback'); this.onerror = () => { this.src='https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.26.0/babel.min.js'; console.error('All Babel fallbacks failed'); }"></script>
     <script>
         console.log("Babel script loaded:", typeof Babel !== 'undefined' ? "Success" : "Failed");
         setTimeout(() => {
@@ -22,7 +22,7 @@
     </script>
     <style>
         body {
-            background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c') no-repeat center center fixed;
+            background: url('https://i.imgur.com/xyz789.jpg') no-repeat center center fixed; /* Replace with your direct image URL */
             background-size: cover;
             font-family: ui-sans-serif, system-ui, sans-serif;
         }
@@ -35,6 +35,7 @@
             padding: 1rem;
             background: transparent;
         }
+        /* Compiled Tailwind CSS (subset for used classes) */
         .min-h-screen { min-height: 100vh; }
         .flex { display: flex; }
         .flex-col { flex-direction: column; }
@@ -78,9 +79,9 @@
     </style>
 </head>
 <body>
-    <main id="root" class="min-h-screen flex flex-col items-center justify-center p-4" aria-label="Main content">
+    <div id="root" class="min-h-screen flex flex-col items-center justify-center p-4">
         <div class="text-gray-600">Loading...</div>
-    </main>
+    </div>
     <script type="text/babel">
         try {
             console.log("Starting React app render...");
@@ -90,9 +91,6 @@
             console.log("Dependencies verified: React, ReactDOM, and Babel are available");
 
             const BTC_ADDRESS = "bc1qun0csudz7vc34tazrvqtztt8cru8qnmqpufhz7";
-
-            // Mock BTC price fetch (replace with real API call in production)
-            const fetchBTCPrice = async () => 30000; // Placeholder: $30,000 per BTC
 
             const initialLogs = [
                 { id: "1", category: "PayPal", bank: "PayPal", balance: 18342, price: 900, stock: 5 },
@@ -120,27 +118,19 @@
                 { id: "20", category: "Bank", bank: "Huntington", balance: 29784, price: 1500, stock: 2 },
             ];
 
-            class ErrorBoundary extends React.Component {
-                state = { hasError: false, error: null };
+            const [logs, setLogs] = React.useState(initialLogs);
 
-                static getDerivedStateFromError(error) {
-                    return { hasError: true, error };
-                }
+            const ErrorBoundary = ({ children }) => {
+                const [hasError, setHasError] = React.useState(false);
 
-                componentDidCatch(error, info) {
-                    console.error("ErrorBoundary caught an error:", error, info);
-                }
+                React.useEffect(() => {
+                    if (hasError) console.error("ErrorBoundary caught an error in App component");
+                }, [hasError]);
 
-                render() {
-                    if (this.state.hasError) {
-                        return <div className="text-red-600 p-4">An error occurred: {String(this.state.error)}. Please refresh the page or check the console for details.</div>;
-                    }
-                    return this.props.children;
-                }
-            }
+                return hasError ? <div className="text-red-600 p-4">An error occurred. Please refresh the page or check the console for details.</div> : children;
+            };
 
             const App = () => {
-                const [logs, setLogs] = React.useState(initialLogs);
                 const [view, setView] = React.useState("categories");
                 const [category, setCategory] = React.useState(null);
                 const [bank, setBank] = React.useState(null);
@@ -148,34 +138,23 @@
                 const [selectedLog, setSelectedLog] = React.useState(null);
                 const [email, setEmail] = React.useState("");
                 const [orderId, setOrderId] = React.useState(null);
-                const [btcPrice, setBtcPrice] = React.useState(30000); // Mock default
-
-                React.useEffect(() => {
-                    // Mock BTC price fetch (replace with real API call)
-                    fetchBTCPrice().then(price => setBtcPrice(price)).catch(() => console.error("Failed to fetch BTC price"));
-                }, []);
 
                 const generateOrderId = () => {
-                    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+                    const id = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
                         const r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
                         return v.toString(16);
                     });
-                };
-
-                const validateEmail = (email) => {
-                    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                    return re.test(email);
+                    return id;
                 };
 
                 const showCategories = () => (
                     <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-                        <h1 className="text-2xl font-bold mb-4 text-center">💵 R.I.P. Banks Log Shop (Mock)</h1>
-                        <p className="text-gray-600 mb-4 text-center">⚠️ This is a mock application for educational purposes only. No real financial data is involved.</p>
+                        <h1 className="text-2xl font-bold mb-4 text-center">💵 R.I.P. Banks Log Shop</h1>
                         <p className="text-gray-600 mb-4">📋 Choose a category:</p>
                         <div className="space-y-2">
-                            <button onClick={() => { setCategory("PayPal"); setBank(null); setRange(null); setView("ranges"); }} className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600" aria-label="Select PayPal category">💳 PayPal</button>
-                            <button onClick={() => { setCategory("CashApp"); setBank(null); setRange(null); setView("ranges"); }} className="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600" aria-label="Select CashApp category">💸 CashApp</button>
-                            <button onClick={() => { setCategory(null); setBank(null); setRange(null); setView("banks"); }} className="w-full bg-purple-500 text-white py-2 rounded hover:bg-purple-600" aria-label="Select Banks category">🏦 Banks</button>
+                            <button onClick={() => { setCategory("PayPal"); setView("ranges"); }} className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">💳 PayPal</button>
+                            <button onClick={() => { setCategory("CashApp"); setView("ranges"); }} className="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600">💸 CashApp</button>
+                            <button onClick={() => { setView("banks"); }} className="w-full bg-purple-500 text-white py-2 rounded hover:bg-purple-600">🏦 Banks</button>
                         </div>
                     </div>
                 );
@@ -185,10 +164,10 @@
                         <h2 className="text-xl font-bold mb-4">🏦 Select a bank:</h2>
                         <div className="grid grid-cols-2 gap-2">
                             {["Chase", "Wells Fargo", "Bank of America", "Navy Federal Credit Union", "TD Bank", "USAA", "Regions", "Huntington"].map((b) => (
-                                <button key={b} onClick={() => { setBank(b); setCategory("Bank"); setRange(null); setView("ranges"); }} className="bg-purple-500 text-white py-2 rounded hover:bg-purple-600" aria-label={`Select ${b} bank`}>{b}</button>
+                                <button key={b} onClick={() => { setBank(b); setCategory("Bank"); setView("ranges"); }} className="bg-purple-500 text-white py-2 rounded hover:bg-purple-600">{b}</button>
                             ))}
                         </div>
-                        <button onClick={() => { setView("categories"); setBank(null); setCategory(null); setRange(null); }} className="mt-4 w-full bg-gray-500 text-white py-2 rounded hover:bg-gray-600" aria-label="Back to categories">🔙 Back</button>
+                        <button onClick={() => { setView("categories"); }} className="mt-4 w-full bg-gray-500 text-white py-2 rounded hover:bg-gray-600">🔙 Back</button>
                     </div>
                 );
 
@@ -202,10 +181,10 @@
                                 { name: "$10,000 - $25,000", min: 10000, max: 25000 },
                                 { name: "$25,000 - $50,000", min: 25000, max: 50000 },
                             ].map((r) => (
-                                <button key={r.name} onClick={() => { setRange({ min: r.min, max: r.max }); setView("confirm_range"); }} className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600" aria-label={`Select balance range ${r.name}`}>{r.name}</button>
+                                <button key={r.name} onClick={() => { setView("confirm_range"); setRange({ min: r.min, max: r.max }); }} className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">{r.name}</button>
                             ))}
                         </div>
-                        <button onClick={() => { setView(category === "Bank" ? "banks" : "categories"); setRange(null); if (category === "Bank") setBank(null); }} className="mt-4 w-full bg-gray-500 text-white py-2 rounded hover:bg-gray-600" aria-label="Back to previous view">🔙 Back</button>
+                        <button onClick={() => { setView(category === "Bank" ? "banks" : "categories"); }} className="mt-4 w-full bg-gray-500 text-white py-2 rounded hover:bg-gray-600">🔙 Back</button>
                     </div>
                 );
 
@@ -215,8 +194,8 @@
                         <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
                             <h2 className="text-xl font-bold mb-4">📊 Found {filteredLogs.length} log{filteredLogs.length !== 1 ? 's' : ''} for {bank || category} in ${range.min.toLocaleString()} - ${range.max.toLocaleString()}</h2>
                             <p className="text-gray-600 mb-4">Proceed to view logs?</p>
-                            <button onClick={() => { setView("logs"); }} className="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600" aria-label="Show available logs">✅ Show Logs</button>
-                            <button onClick={() => { setView(category === "Bank" ? "banks" : "categories"); setRange(null); if (category === "Bank") setBank(null); }} className="mt-2 w-full bg-gray-500 text-white py-2 rounded hover:bg-gray-600" aria-label="Back to previous view">🔙 Back</button>
+                            <button onClick={() => { setView("logs"); }} className="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600">✅ Show Logs</button>
+                            <button onClick={() => { setView(category === "Bank" ? "banks" : "categories"); }} className="mt-2 w-full bg-gray-500 text-white py-2 rounded hover:bg-gray-600">🔙 Back</button>
                         </div>
                     );
                 };
@@ -237,12 +216,12 @@
                                             <p>💰 Balance: ${log.balance.toLocaleString()}</p>
                                             <p>💲 Price: ${log.price.toLocaleString()}</p>
                                             <p>📦 Stock: {log.stock} available</p>
-                                            <button onClick={() => { setSelectedLog(log); setOrderId(generateOrderId()); setView("purchase"); }} className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 mt-2" aria-label={`Buy log ID ${log.id}`}>🛒 Buy</button>
+                                            <button onClick={() => { setSelectedLog(log); setOrderId(generateOrderId()); setView("purchase"); }} className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 mt-2">🛒 Buy</button>
                                         </div>
                                     ))}
                                 </div>
                             )}
-                            <button onClick={() => { setView(category === "Bank" ? "banks" : "categories"); setRange(null); if (category === "Bank") setBank(null); }} className="mt-4 w-full bg-gray-500 text-white py-2 rounded hover:bg-gray-600" aria-label="Back to previous view">🔙 Back</button>
+                            <button onClick={() => { setView(category === "Bank" ? "banks" : "categories"); }} className="mt-4 w-full bg-gray-500 text-white py-2 rounded hover:bg-gray-600">🔙 Back</button>
                         </div>
                     );
                 };
@@ -254,7 +233,7 @@
                             <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
                                 <h2 className="text-xl font-bold mb-4">🛒 Purchase Log</h2>
                                 <p className="text-red-600">❌ This log is out of stock.</p>
-                                <button onClick={() => { setView("logs"); }} className="mt-4 w-full bg-gray-500 text-white py-2 rounded hover:bg-gray-600" aria-label="Back to logs">🔙 Back</button>
+                                <button onClick={() => { setView("logs"); }} className="mt-4 w-full bg-gray-500 text-white py-2 rounded hover:bg-gray-600">🔙 Back</button>
                             </div>
                         );
                     }
@@ -265,7 +244,7 @@
                             <p>🏦 Bank: {currentLog.bank}</p>
                             <p>💰 Balance: ${currentLog.balance.toLocaleString()}</p>
                             <p>💲 Price: ${currentLog.price.toLocaleString()}</p>
-                            <p>🪙 Send {(currentLog.price / btcPrice).toFixed(6)} BTC to: {BTC_ADDRESS}</p>
+                            <p>🪙 Send {(currentLog.price / 30000).toFixed(6)} BTC to: {BTC_ADDRESS}</p>
                             <p>🆔 Order ID: {orderId}</p>
                             <p className="text-gray-600 mb-4">📩 Enter your email to receive details (mock delivery):</p>
                             <input
@@ -274,33 +253,26 @@
                                 onChange={(e) => setEmail(e.target.value)}
                                 placeholder="Enter your email"
                                 className="w-full p-2 border rounded mb-4"
-                                aria-label="Email for order delivery"
                             />
                             <button
                                 onClick={() => {
-                                    if (!validateEmail(email)) {
-                                        alert("❌ Please enter a valid email.");
-                                        return;
+                                    if (email) {
+                                        const updatedLogs = logs.map(log =>
+                                            log.id === currentLog.id ? { ...log, stock: log.stock - 1 } : log
+                                        );
+                                        setLogs(updatedLogs);
+                                        alert(`🎉 Order ${orderId} confirmed! Details sent to ${email} (mock delivery). Verify payment at ${BTC_ADDRESS}.`);
+                                        setView("categories");
+                                        setEmail("");
+                                    } else {
+                                        alert("❌ Please enter an email.");
                                     }
-                                    const updatedLogs = logs.map(log =>
-                                        log.id === currentLog.id && log.stock > 0 ? { ...log, stock: log.stock - 1 } : log
-                                    );
-                                    setLogs(updatedLogs);
-                                    alert(`🎉 Order ${orderId} confirmed! Details sent to ${email} (mock delivery). Verify payment at ${BTC_ADDRESS}.`);
-                                    setView("categories");
-                                    setEmail("");
-                                    setCategory(null);
-                                    setBank(null);
-                                    setRange(null);
-                                    setSelectedLog(null);
-                                    setOrderId(null);
                                 }}
                                 className="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600"
-                                aria-label="Confirm order"
                             >
                                 ✅ Confirm Order
                             </button>
-                            <button onClick={() => { setView("logs"); }} className="mt-2 w-full bg-gray-500 text-white py-2 rounded hover:bg-gray-600" aria-label="Back to logs">🔙 Back</button>
+                            <button onClick={() => { setView("logs"); }} className="mt-2 w-full bg-gray-500 text-white py-2 rounded hover:bg-gray-600">🔙 Back</button>
                         </div>
                     );
                 };
@@ -331,7 +303,7 @@
             }
         } catch (e) {
             console.error("Error rendering app:", e);
-            document.getElementById("root")?.innerHTML = "<div class='text-red-600 p-4'>Error loading the application: Application failed to initialize. Please check the console for details or try refreshing.</div>";
+            document.getElementById("root")?.innerHTML = "<div class='text-red-600 p-4'>Error loading the application: " + e.message + ". Please check the console for details or try refreshing.</div>";
         }
     </script>
 </body>
