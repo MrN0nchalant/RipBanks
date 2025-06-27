@@ -6,34 +6,12 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://unpkg.com 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;">
     <title>R.I.P. Banks Log Shop</title>
     <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wcAAwAB/6V0KAAAAABJRU5ErkJggg==">
-    <script>
-        console.log("Loading React...");
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js" onerror="this.src='https://unpkg.com/react@18.2.0/umd/react.production.min.js'; console.error('Failed to load React from jsDelivr, using unpkg fallback');"></script>
-    <script>
-        if (typeof React === 'undefined') console.error('React failed to load');
-        else console.log('React loaded successfully');
-    </script>
-    <script>
-        console.log("Loading ReactDOM...");
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js" onerror="this.src='https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js'; console.error('Failed to load ReactDOM from jsDelivr, using unpkg fallback');"></script>
-    <script>
-        if (typeof ReactDOM === 'undefined') console.error('ReactDOM failed to load');
-        else console.log('ReactDOM loaded successfully');
-    </script>
-    <script>
-        console.log("Loading Babel...");
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.25.6/babel.min.js" onerror="this.src='https://unpkg.com/@babel/standalone@7.25.6/babel.min.js'; console.error('Failed to load Babel from jsDelivr, using unpkg fallback');"></script>
-    <script>
-        if (typeof Babel === 'undefined') {
-            console.error('Babel failed to load from both primary and fallback sources');
-            document.getElementById('root').innerHTML = '<div class="text-red-600 p-4">Error: Failed to load Babel. Please refresh the page or check your network connection.</div>';
-        } else {
-            console.log('Babel loaded successfully');
-        }
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js" onerror="this.src='https://unpkg.com/react@18.2.0/umd/react.production.min.js'; console.error('Failed to load React from cdn.jsdelivr.net, using unpkg fallback');"></script>
+    <script>console.log("React script loaded:", typeof React !== 'undefined' ? "Success" : "Failed");</script>
+    <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js" onerror="this.src='https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js'; console.error('Failed to load ReactDOM from cdn.jsdelivr.net, using unpkg fallback');"></script>
+    <script>console.log("ReactDOM script loaded:", typeof ReactDOM !== 'undefined' ? "Success" : "Failed");</script>
+    <script src="https://cdn.jsdelivr.net/npm/babel-standalone@7.22.9/babel.min.js" onerror="this.src='https://unpkg.com/@babel/standalone@7.22.9/babel.min.js'; console.error('Failed to load Babel from cdn.jsdelivr.net, using unpkg fallback');"></script>
+    <script>console.log("Babel script loaded:", typeof Babel !== 'undefined' ? "Success" : "Failed");</script>
     <style>
         /* Compiled Tailwind CSS (subset for used classes) */
         .min-h-screen { min-height: 100vh; }
@@ -86,8 +64,9 @@
         try {
             console.log("Starting React app render...");
             if (!React || !ReactDOM || !Babel) {
-                throw new Error("Required libraries (React, ReactDOM, or Babel) are not loaded");
+                throw new Error("React, ReactDOM, or Babel is not defined");
             }
+            console.log("Dependencies verified: React, ReactDOM, and Babel are available");
 
             const BTC_ADDRESS = "bc1qun0csudz7vc34tazrvqtztt8cru8qnmqpufhz7";
 
@@ -115,6 +94,7 @@
             ];
 
             const App = () => {
+                console.log("App component initialized");
                 const [view, setView] = React.useState("categories");
                 const [category, setCategory] = React.useState(null);
                 const [bank, setBank] = React.useState(null);
@@ -136,7 +116,7 @@
 
                 const showCategories = () => (
                     <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-                        <h1 className="text-2xl font-bold mb-4 text-center">🎉 R.I.P. Banks Log Shop</h1>
+                        <h1 className="text-2xl font-bold mb-4 text-center">🏦 R.I.P. Banks Log Shop</h1>
                         <p className="text-gray-600 mb-4">📋 Choose a category:</p>
                         <div className="space-y-2">
                             <button onClick={() => { setCategory("PayPal"); setView("ranges"); console.log("Selected PayPal"); }} className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">💳 PayPal</button>
@@ -266,8 +246,9 @@
             const root = ReactDOM.createRoot(document.getElementById("root"));
             console.log("Rendering App to root...");
             root.render(<App />);
+            console.log("Render complete");
         } catch (e) {
-            console.error("Error rendering app:", e.message);
+            console.error("Error rendering app:", e);
             document.getElementById("root").innerHTML = "<div class='text-red-600 p-4'>Error loading the application: " + e.message + ". Please check the console for details or try refreshing.</div>";
         }
     </script>
