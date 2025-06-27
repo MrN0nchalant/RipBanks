@@ -1,0 +1,4 @@
+cd C:\Users\george\Desktop\logsales
+git add index.html
+git commit -m "Update background to use based image from Imgur"
+git push origin main
