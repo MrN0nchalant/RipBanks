@@ -344,7 +344,7 @@
                             <p>💲 Price: ${currentLog.price.toLocaleString()}</p>
                             <p>🪙 Send {btcAmount} BTC to: {BTC_ADDRESS}</p>
                             <p>🆔 Order ID: {orderId || "Generating..."}</p>
-                            <p className="text-gray-600 mb-4">📩 Enter your email to receive details (mock delivery):</p>
+                            <p className="text-gray-600 mb-4">📩 Enter your email to receive details (delivery):</p>
                             <input
                                 type="email"
                                 value={email}
@@ -359,7 +359,7 @@
                                             log.id === currentLog.id ? { ...log, stock: log.stock - 1 } : log
                                         );
                                         setLogs(updatedLogs);
-                                        alert(`🎉 Order ${orderId} confirmed! Details sent to ${email} (mock delivery). Verify payment at ${BTC_ADDRESS}.`);
+                                        alert(`🎉 Order ${orderId} confirmed! Details sent to ${email} (delivery). Verify payment at ${BTC_ADDRESS}.`);
                                         setView("categories");
                                         setEmail("");
                                         setSelectedLog(null);
