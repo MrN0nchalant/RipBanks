@@ -1,338 +1,357 @@
 <!DOCTYPE html>
-   <html lang="en">
-   <head>
-       <meta charset="UTF-8">
-       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://images.unsplash.com https://i.imgur.com; style-src-elem 'self' 'unsafe-inline';">
-       <title>R.I.P. Banks Log Shop</title>
-       <link rel="icon" type="image/png" href="https://i.imgur.com/1vtVZRq.png">
-       <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js" onerror="this.src='https://unpkg.com/react@18.2.0/umd/react.production.min.js'; console.error('Failed to load React from cdn.jsdelivr.net, using unpkg fallback');"></script>
-       <script>console.log("React script loaded:", typeof React !== 'undefined' ? "Success" : "Failed");</script>
-       <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js" onerror="this.src='https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js'; console.error('Failed to load ReactDOM from cdn.jsdelivr.net, using unpkg fallback');"></script>
-       <script>console.log("ReactDOM script loaded:", typeof ReactDOM !== 'undefined' ? "Success" : "Failed");</script>
-       <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.26.0/babel.min.js" onerror="this.src='https://unpkg.com/@babel/standalone@7.26.0/babel.min.js'; console.error('Failed to load Babel from cdn.jsdelivr.net, trying unpkg fallback'); this.onerror = () => { this.src='https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.26.0/babel.min.js'; console.error('Failed to load Babel from unpkg, using cdnjs fallback'); }"></script>
-       <script>
-           console.log("Babel script loaded:", typeof Babel !== 'undefined' ? "Success" : "Failed");
-           setTimeout(() => {
-               if (typeof Babel === 'undefined') {
-                   console.error("Babel failed to initialize after loading. Check CDN availability or network issues.");
-                   document.getElementById("root").innerHTML = "<div class='text-red-600 p-4'>Error: Babel failed to load. Please try refreshing or check your network.</div>";
-               }
-           }, 5000);
-       </script>
-       <style>
-           body {
-               background: url(/background.jpg) no-repeat center center fixed; /* Local image path */
-               background-size: cover;
-               font-family: ui-sans-serif, system-ui, sans-serif;
-           }
-           #root {
-               min-height: 100vh;
-               display: flex;
-               flex-direction: column;
-               align-items: center;
-               justify-content: center;
-               padding: 1rem;
-               background: transparent;
-           }
-           .min-h-screen { min-height: 100vh; }
-           .flex { display: flex; }
-           .flex-col { flex-direction: column; }
-           .items-center { align-items: center; }
-           .justify-center { justify-content: center; }
-           .p-4 { padding: 1rem; }
-           .p-6 { padding: 1.5rem; }
-           .bg-gray-100 { background-color: #f3f4f6; }
-           .bg-white { background-color: #ffffff; }
-           .bg-blue-500 { background-color: #3b82f6; }
-           .hover\:bg-blue-600:hover { background-color: #2563eb; }
-           .bg-green-500 { background-color: #22c55e; }
-           .hover\:bg-green-600:hover { background-color: #16a34a; }
-           .bg-purple-500 { background-color: #8b5cf6; }
-           .hover\:bg-purple-600:hover { background-color: #7c3aed; }
-           .bg-gray-500 { background-color: #6b7280; }
-           .hover\:bg-gray-600:hover { background-color: #4b5563; }
-           .text-gray-600 { color: #4b5563; }
-           .text-red-600 { color: #dc2626; }
-           .text-white { color: #ffffff; }
-           .text-2xl { font-size: 1.5rem; line-height: 2rem; }
-           .text-xl { font-size: 1.25rem; line-height: 1.75rem; }
-           .font-bold { font-weight: 700; }
-           .font-sans { font-family: ui-sans-serif, system-ui, sans-serif; }
-           .mb-4 { margin-bottom: 1rem; }
-           .mt-4 { margin-top: 1rem; }
-           .mt-2 { margin-top: 0.5rem; }
-           .space-y-2 > * + * { margin-top: 0.5rem; }
-           .space-y-4 > * + * { margin-top: 1rem; }
-           .grid { display: grid; }
-           .grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-           .gap-2 { gap: 0.5rem; }
-           .w-full { width: 100%; }
-           .max-w-md { max-width: 28rem; }
-           .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
-           .rounded { border-radius: 0.375rem; }
-           .rounded-lg { border-radius: 0.5rem; }
-           .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
-           .border { border-width: 1px; border-color: #e5e7eb; }
-           .text-center { text-align: center; }
-       </style>
-   </head>
-   <body>
-       <div id="root" class="min-h-screen flex flex-col items-center justify-center p-4">
-           <div class="text-gray-600">Loading...</div>
-       </div>
-       <script type="text/babel">
-           try {
-               console.log("Starting React app render...");
-               if (!React || !ReactDOM || !Babel) {
-                   throw new Error("React, ReactDOM, or Babel is not defined");
-               }
-               console.log("Dependencies verified: React, ReactDOM, and Babel are available");
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; style-src-elem 'self' 'unsafe-inline';">
+    <title>R.I.P. Banks Log Shop</title>
+    <link rel="icon" type="image/png" href="/favicon.png" onerror="this.href='https://i.imgur.com/1vtVZRq.png'; console.error('Local favicon failed, using fallback');">
+    <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js" onerror="this.src='https://unpkg.com/react@18.2.0/umd/react.production.min.js'; this.onerror=()=>{this.src='https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js'; console.error('React fallback to cdnjs');}"></script>
+    <script>console.log("React script loaded:", typeof React !== 'undefined' ? "Success" : "Failed");</script>
+    <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js" onerror="this.src='https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js'; this.onerror=()=>{this.src='https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js'; console.error('ReactDOM fallback to cdnjs');}"></script>
+    <script>console.log("ReactDOM script loaded:", typeof ReactDOM !== 'undefined' ? "Success" : "Failed");</script>
+    <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.26.0/babel.min.js" onerror="this.src='https://unpkg.com/@babel/standalone@7.26.0/babel.min.js'; this.onerror=()=>{this.src='https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.26.0/babel.min.js'; console.error('Babel fallback to cdnjs');}"></script>
+    <script>
+        console.log("Babel script loaded:", typeof Babel !== 'undefined' ? "Success" : "Failed");
+        setTimeout(() => {
+            if (typeof Babel === 'undefined') {
+                console.error("Babel failed to initialize after loading. Check CDN availability or network issues.");
+                document.getElementById("root").innerHTML = "<div class='text-red-600 p-4'>Error: Babel failed to load. Please try refreshing or check your network.</div>";
+            }
+        }, 5000);
+    </script>
+    <style>
+        body {
+            background: url('/background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: ui-sans-serif, system-ui, sans-serif;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        body.loaded::before {
+            opacity: 1;
+        }
+        #root {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.8); /* Fallback background */
+        }
+        .min-h-screen { min-height: 100vh; }
+        .flex { display: flex; }
+        .flex-col { flex-direction: column; }
+        .items-center { align-items: center; }
+        .justify-center { justify-content: center; }
+        .p-4 { padding: 1rem; }
+        .p-6 { padding: 1.5rem; }
+        .bg-gray-100 { background-color: #f3f4f6; }
+        .bg-white { background-color: #ffffff; }
+        .bg-blue-500 { background-color: #3b82f6; }
+        .hover\:bg-blue-600:hover { background-color: #2563eb; }
+        .bg-green-500 { background-color: #22c55e; }
+        .hover\:bg-green-600:hover { background-color: #16a34a; }
+        .bg-purple-500 { background-color: #8b5cf6; }
+        .hover\:bg-purple-600:hover { background-color: #7c3aed; }
+        .bg-gray-500 { background-color: #6b7280; }
+        .hover\:bg-gray-600:hover { background-color: #4b5563; }
+        .text-gray-600 { color: #4b5563; }
+        .text-red-600 { color: #dc2626; }
+        .text-white { color: #ffffff; }
+        .text-2xl { font-size: 1.5rem; line-height: 2rem; }
+        .text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+        .font-bold { font-weight: 700; }
+        .font-sans { font-family: ui-sans-serif, system-ui, sans-serif; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mt-4 { margin-top: 1rem; }
+        .mt-2 { margin-top: 0.5rem; }
+        .space-y-2 > * + * { margin-top: 0.5rem; }
+        .space-y-4 > * + * { margin-top: 1rem; }
+        .grid { display: grid; }
+        .grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .gap-2 { gap: 0.5rem; }
+        .w-full { width: 100%; }
+        .max-w-md { max-width: 28rem; }
+        .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+        .rounded { border-radius: 0.375rem; }
+        .rounded-lg { border-radius: 0.5rem; }
+        .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
+        .border { border-width: 1px; border-color: #e5e7eb; }
+        .text-center { text-align: center; }
+    </style>
+</head>
+<body class="loaded">
+    <div id="root" class="min-h-screen flex flex-col items-center justify-center p-4">
+        <div class="text-gray-600">Loading...</div>
+    </div>
+    <script type="text/babel">
+        try {
+            console.log("Starting React app render...");
+            if (!React || !ReactDOM || !Babel) {
+                throw new Error("React, ReactDOM, or Babel is not defined");
+            }
+            console.log("Dependencies verified: React, ReactDOM, and Babel are available");
 
-               const BTC_ADDRESS = "bc1qun0csudz7vc34tazrvqtztt8cru8qnmqpufhz7";
+            const BTC_ADDRESS = "bc1qun0csudz7vc34tazrvqtztt8cru8qnmqpufhz7";
 
-               const initialLogs = [
-                   { id: "1", category: "PayPal", bank: "PayPal", balance: 10000, price: 600, stock: 5 },
-                   { id: "2", category: "PayPal", bank: "PayPal", balance: 5000, price: 400, stock: 3 },
-                   { id: "21", category: "PayPal", bank: "PayPal", balance: 1500, price: 125, stock: 10 },
-                   { id: "22", category: "PayPal", bank: "PayPal", balance: 750, price: 75, stock: 8 },
-                   { id: "23", category: "PayPal", bank: "PayPal", balance: 2000, price: 150, stock: 6 },
-                   { id: "3", category: "CashApp", bank: "CashApp", balance: 15623, price: 800, stock: 4 },
-                   { id: "4", category: "CashApp", bank: "CashApp", balance: 4287, price: 400, stock: 2 },
-                   { id: "5", category: "Bank", bank: "Chase", balance: 14789, price: 700, stock: 6 },
-                   { id: "6", category: "Bank", bank: "Chase", balance: 32145, price: 1600, stock: 1 },
-                   { id: "7", category: "Bank", bank: "Wells Fargo", balance: 19234, price: 1000, stock: 3 },
-                   { id: "8", category: "Bank", bank: "Wells Fargo", balance: 38761, price: 1900, stock: 2 },
-                   { id: "9", category: "Bank", bank: "Bank of America", balance: 23678, price: 1200, stock: 4 },
-                   { id: "10", category: "Bank", bank: "Bank of America", balance: 41923, price: 2100, stock: 1 },
-                   { id: "11", category: "Bank", bank: "Navy Federal Credit Union", balance: 17856, price: 900, stock: 5 },
-                   { id: "12", category: "Bank", bank: "Navy Federal Credit Union", balance: 34219, price: 1700, stock: 2 },
-                   { id: "13", category: "Bank", bank: "TD Bank", balance: 12347, price: 600, stock: 3 },
-                   { id: "14", category: "Bank", bank: "TD Bank", balance: 29876, price: 1500, stock: 1 },
-                   { id: "15", category: "Bank", bank: "USAA", balance: 21456, price: 1100, stock: 4 },
-                   { id: "16", category: "Bank", bank: "USAA", balance: 37612, price: 1900, stock: 2 },
-                   { id: "17", category: "Bank", bank: "Regions", balance: 9876, price: 500, stock: 3 },
-                   { id: "18", category: "Bank", bank: "Regions", balance: 43125, price: 2200, stock: 1 },
-                   { id: "19", category: "Bank", bank: "Huntington", balance: 16543, price: 800, stock: 5 },
-                   { id: "20", category: "Bank", bank: "Huntington", balance: 29784, price: 1500, stock: 2 },
-               ];
+            const initialLogs = [
+                { id: "1", category: "PayPal", bank: "PayPal", balance: 10000, price: 600, stock: 5 },
+                { id: "2", category: "PayPal", bank: "PayPal", balance: 5000, price: 400, stock: 3 },
+                { id: "21", category: "PayPal", bank: "PayPal", balance: 1500, price: 125, stock: 10 },
+                { id: "22", category: "PayPal", bank: "PayPal", balance: 750, price: 75, stock: 8 },
+                { id: "23", category: "PayPal", bank: "PayPal", balance: 2000, price: 150, stock: 6 },
+                { id: "3", category: "CashApp", bank: "CashApp", balance: 15623, price: 800, stock: 4 },
+                { id: "4", category: "CashApp", bank: "CashApp", balance: 4287, price: 400, stock: 2 },
+                { id: "5", category: "Bank", bank: "Chase", balance: 14789, price: 700, stock: 6 },
+                { id: "6", category: "Bank", bank: "Chase", balance: 32145, price: 1600, stock: 1 },
+                { id: "7", category: "Bank", bank: "Wells Fargo", balance: 19234, price: 1000, stock: 3 },
+                { id: "8", category: "Bank", bank: "Wells Fargo", balance: 38761, price: 1900, stock: 2 },
+                { id: "9", category: "Bank", bank: "Bank of America", balance: 23678, price: 1200, stock: 4 },
+                { id: "10", category: "Bank", bank: "Bank of America", balance: 41923, price: 2100, stock: 1 },
+                { id: "11", category: "Bank", bank: "Navy Federal Credit Union", balance: 17856, price: 900, stock: 5 },
+                { id: "12", category: "Bank", bank: "Navy Federal Credit Union", balance: 34219, price: 1700, stock: 2 },
+                { id: "13", category: "Bank", bank: "TD Bank", balance: 12347, price: 600, stock: 3 },
+                { id: "14", category: "Bank", bank: "TD Bank", balance: 29876, price: 1500, stock: 1 },
+                { id: "15", category: "Bank", bank: "USAA", balance: 21456, price: 1100, stock: 4 },
+                { id: "16", category: "Bank", bank: "USAA", balance: 37612, price: 1900, stock: 2 },
+                { id: "17", category: "Bank", bank: "Regions", balance: 9876, price: 500, stock: 3 },
+                { id: "18", category: "Bank", bank: "Regions", balance: 43125, price: 2200, stock: 1 },
+                { id: "19", category: "Bank", bank: "Huntington", balance: 16543, price: 800, stock: 5 },
+                { id: "20", category: "Bank", bank: "Huntington", balance: 29784, price: 1500, stock: 2 },
+            ];
 
-               const App = () => {
-                   const [logs, setLogs] = React.useState(initialLogs);
-                   console.log("App component initialized with logs:", logs);
-                   const [view, setView] = React.useState("categories");
-                   const [category, setCategory] = React.useState(null);
-                   const [bank, setBank] = React.useState(null);
-                   const [range, setRange] = React.useState(null);
-                   const [subRanges, setSubRanges] = React.useState({}); // Store sub-ranges by log ID
-                   const [selectedLog, setSelectedLog] = React.useState(null);
-                   const [email, setEmail] = React.useState("");
-                   const [orderId, setOrderId] = React.useState(null);
+            const App = () => {
+                const [logs, setLogs] = React.useState(initialLogs);
+                console.log("App component initialized with logs:", logs);
+                const [view, setView] = React.useState("categories");
+                const [category, setCategory] = React.useState(null);
+                const [bank, setBank] = React.useState(null);
+                const [range, setRange] = React.useState(null);
+                const [subRanges, setSubRanges] = React.useState({});
+                const [selectedLog, setSelectedLog] = React.useState(null);
+                const [email, setEmail] = React.useState("");
+                const [orderId, setOrderId] = React.useState(null);
 
-                   console.log("Current view:", view, "Range:", range, "Category:", category, "Bank:", bank);
+                React.useEffect(() => {
+                    console.log("View changed to:", view, "Range:", range, "Category:", category, "Bank:", bank);
+                }, [view, range, category, bank]);
 
-                   // Function to generate fixed sub-ranges: 500-750, 1000-1500, 2000-2500
-                   const generateSubRanges = (min, max) => {
-                       const fixedRanges = [
-                           { start: 500, end: 750 },
-                           { start: 1000, end: 1500 },
-                           { start: 2000, end: 2500 }
-                       ];
-                       // Filter ranges that fit within the selected range
-                       const availableRanges = fixedRanges.filter(range => range.end <= max && range.start >= min);
-                       console.log("Generated sub-ranges for min:", min, "max:", max, "available:", availableRanges);
-                       // Shuffle the available ranges
-                       for (let i = availableRanges.length - 1; i > 0; i--) {
-                           const j = Math.floor(Math.random() * (i + 1));
-                           [availableRanges[i], availableRanges[j]] = [availableRanges[j], availableRanges[i]];
-                       }
-                       return availableRanges;
-                   };
+                const generateSubRanges = (min, max) => {
+                    const fixedRanges = [
+                        { start: 500, end: 750 },
+                        { start: 1000, end: 1500 },
+                        { start: 2000, end: 2500 }
+                    ];
+                    const availableRanges = fixedRanges.filter(r => r.end <= max && r.start >= min);
+                    console.log("Generated sub-ranges for min:", min, "max:", max, "available:", availableRanges);
+                    if (availableRanges.length === 0) {
+                        console.warn("No valid sub-ranges for range", min, "-", max);
+                        return [{ start: min, end: max }]; // Fallback to full range
+                    }
+                    for (let i = availableRanges.length - 1; i > 0; i--) {
+                        const j = Math.floor(Math.random() * (i + 1));
+                        [availableRanges[i], availableRanges[j]] = [availableRanges[j], availableRanges[i]];
+                    }
+                    return availableRanges;
+                };
 
-                   const generateOrderId = () => {
-                       const id = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
-                           const r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
-                           return v.toString(16);
-                       });
-                       console.log("Generated Order ID:", id);
-                       return id;
-                   };
+                const generateOrderId = () => {
+                    const id = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+                        const r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+                        return v.toString(16);
+                    });
+                    console.log("Generated Order ID:", id);
+                    return id;
+                };
 
-                   const showCategories = () => (
-                       <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-                           <h1 className="text-2xl font-bold mb-4 text-center">💵 R.I.P. Banks Log Shop</h1>
-                           <p className="text-gray-600 mb-4">📋 Choose a category:</p>
-                           <div className="space-y-2">
-                               <button onClick={() => { setCategory("PayPal"); setView("ranges"); console.log("Selected PayPal"); }} className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">💳 PayPal</button>
-                               <button onClick={() => { setCategory("CashApp"); setView("ranges"); console.log("Selected CashApp"); }} className="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600">💸 CashApp</button>
-                               <button onClick={() => { setView("banks"); console.log("Selected Banks"); }} className="w-full bg-purple-500 text-white py-2 rounded hover:bg-purple-600">🏦 Banks</button>
-                           </div>
-                       </div>
-                   );
+                const showCategories = () => (
+                    <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+                        <h1 className="text-2xl font-bold mb-4 text-center">💵 R.I.P. Banks Log Shop</h1>
+                        <p className="text-gray-600 mb-4">📋 Choose a category:</p>
+                        <div className="space-y-2">
+                            <button onClick={() => { setCategory("PayPal"); setView("ranges"); }} className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">💳 PayPal</button>
+                            <button onClick={() => { setCategory("CashApp"); setView("ranges"); }} className="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600">💸 CashApp</button>
+                            <button onClick={() => { setView("banks"); }} className="w-full bg-purple-500 text-white py-2 rounded hover:bg-purple-600">🏦 Banks</button>
+                        </div>
+                    </div>
+                );
 
-                   const showBanks = () => (
-                       <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-                           <h2 className="text-xl font-bold mb-4">🏦 Select a bank:</h2>
-                           <div className="grid grid-cols-2 gap-2">
-                               {["Chase", "Wells Fargo", "Bank of America", "Navy Federal Credit Union", "TD Bank", "USAA", "Regions", "Huntington"].map((b) => (
-                                   <button key={b} onClick={() => { setBank(b); setCategory("Bank"); setView("ranges"); console.log("Selected Bank:", b); }} className="bg-purple-500 text-white py-2 rounded hover:bg-purple-600">{b}</button>
-                               ))}
-                           </div>
-                           <button onClick={() => { setView("categories"); console.log("Back to categories"); }} className="mt-4 w-full bg-gray-500 text-white py-2 rounded hover:bg-gray-600">🔙 Back</button>
-                       </div>
-                   );
+                const showBanks = () => (
+                    <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+                        <h2 className="text-xl font-bold mb-4">🏦 Select a bank:</h2>
+                        <div className="grid grid-cols-2 gap-2">
+                            {["Chase", "Wells Fargo", "Bank of America", "Navy Federal Credit Union", "TD Bank", "USAA", "Regions", "Huntington"].map((b) => (
+                                <button key={b} onClick={() => { setBank(b); setCategory("Bank"); setView("ranges"); }} className="bg-purple-500 text-white py-2 rounded hover:bg-purple-600">{b}</button>
+                            ))}
+                        </div>
+                        <button onClick={() => setView("categories")} className="mt-4 w-full bg-gray-500 text-white py-2 rounded hover:bg-gray-600">🔙 Back</button>
+                    </div>
+                );
 
-                   const showRanges = () => (
-                       <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-                           <h2 className="text-xl font-bold mb-4">💰 Select balance range for {bank || category}:</h2>
-                           <div className="space-y-2">
-                               {[
-                                   { name: "0 - $2,500", min: 0, max: 2500 },
-                                   { name: "$2,500 - $10,000", min: 2500, max: 10000 },
-                                   { name: "$10,000 - $25,000", min: 10000, max: 25000 },
-                                   { name: "$25,000 - $50,000", min: 25000, max: 50000 },
-                               ].map((r) => (
-                                   <button key={r.name} onClick={() => { setRange(r); setView("confirm_range"); console.log("Selected Range:", r.name); }} className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">{r.name}</button>
-                               ))}
-                           </div>
-                           <button onClick={() => { setView(category === "Bank" ? "banks" : "categories"); console.log("Back to", category === "Bank" ? "banks" : "categories"); }} className="mt-4 w-full bg-gray-500 text-white py-2 rounded hover:bg-gray-600">🔙 Back</button>
-                       </div>
-                   );
+                const showRanges = () => (
+                    <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+                        <h2 className="text-xl font-bold mb-4">💰 Select balance range for {bank || category}:</h2>
+                        <div className="space-y-2">
+                            {[
+                                { name: "0 - $2,500", min: 0, max: 2500 },
+                                { name: "$2,500 - $10,000", min: 2500, max: 10000 },
+                                { name: "$10,000 - $25,000", min: 10000, max: 25000 },
+                                { name: "$25,000 - $50,000", min: 25000, max: 50000 },
+                            ].map((r) => (
+                                <button key={r.name} onClick={() => { setRange(r); setView("confirm_range"); }} className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">{r.name}</button>
+                            ))}
+                        </div>
+                        <button onClick={() => setView(category === "Bank" ? "banks" : "categories")} className="mt-4 w-full bg-gray-500 text-white py-2 rounded hover:bg-gray-600">🔙 Back</button>
+                    </div>
+                );
 
-                   const confirmRange = () => {
-                       if (!range) return <div className="text-red-600">Error: Range not set</div>;
-                       const filteredLogs = logs.filter((log) => log.category === category && log.bank === (bank || category) && log.balance >= range.min && log.balance <= range.max && log.stock > 0);
-                       console.log("Filtered Logs by Range:", filteredLogs);
+                const confirmRange = () => {
+                    if (!range) return <div className="text-red-600 p-4">Error: Range not set</div>;
+                    const filteredLogs = logs.filter((log) => log.category === category && log.bank === (bank || category) && log.balance >= range.min && log.balance <= range.max && log.stock > 0);
+                    console.log("Filtered Logs by Range:", filteredLogs);
 
-                       // Generate and assign sub-ranges only once when confirming range
-                       if (filteredLogs.length > 0 && Object.keys(subRanges).length === 0) {
-                           const availableSubRanges = generateSubRanges(range.min, range.max);
-                           const assignedSubRanges = {};
-                           filteredLogs.forEach((log, index) => {
-                               const rangeIndex = index % availableSubRanges.length; // Cycle through ranges
-                               const { start, end } = availableSubRanges[rangeIndex];
-                               assignedSubRanges[log.id] = `${start.toLocaleString()} - $${end.toLocaleString()}`;
-                           });
-                           setSubRanges(assignedSubRanges);
-                       }
+                    if (filteredLogs.length > 0 && Object.keys(subRanges).length === 0) {
+                        const availableSubRanges = generateSubRanges(range.min, range.max);
+                        const assignedSubRanges = {};
+                        filteredLogs.forEach((log, index) => {
+                            const rangeIndex = index % availableSubRanges.length;
+                            const { start, end } = availableSubRanges[rangeIndex] || { start: range.min, end: range.max };
+                            assignedSubRanges[log.id] = `${start.toLocaleString()} - $${end.toLocaleString()}`;
+                        });
+                        setSubRanges(assignedSubRanges);
+                    }
 
-                       return (
-                           <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-                               <h2 className="text-xl font-bold mb-4">📊 Found {filteredLogs.length} log{filteredLogs.length !== 1 ? 's' : ''} for {bank || category} in ${range.min.toLocaleString()} - ${range.max.toLocaleString()}</h2>
-                               <p className="text-gray-600 mb-4">Proceed to view logs?</p>
-                               <button onClick={() => { setView("logs"); console.log("Proceeding to logs"); }} className="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600">✅ Show Logs</button>
-                               <button onClick={() => { setView("ranges"); console.log("Back to ranges"); }} className="mt-2 w-full bg-gray-500 text-white py-2 rounded hover:bg-gray-600">🔙 Back</button>
-                           </div>
-                       );
-                   };
+                    return (
+                        <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+                            <h2 className="text-xl font-bold mb-4">📊 Found {filteredLogs.length} log{filteredLogs.length !== 1 ? 's' : ''} for {bank || category} in ${range.min.toLocaleString()} - ${range.max.toLocaleString()}</h2>
+                            <p className="text-gray-600 mb-4">Proceed to view logs?</p>
+                            <button onClick={() => setView("logs")} className="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600">✅ Show Logs</button>
+                            <button onClick={() => setView("ranges")} className="mt-2 w-full bg-gray-500 text-white py-2 rounded hover:bg-gray-600">🔙 Back</button>
+                        </div>
+                    );
+                };
 
-                   const showLogs = () => {
-                       if (!range) return <div className="text-red-600">Error: Range not set</div>;
-                       const filteredLogs = logs.filter((log) => log.category === category && log.bank === (bank || category) && log.balance >= range.min && log.balance <= range.max && log.stock > 0);
-                       console.log("Displaying Logs by Range:", filteredLogs, "SubRanges:", subRanges);
-                       return (
-                           <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-                               <h2 className="text-xl font-bold mb-4">📊 {bank || category} Logs (${range.min.toLocaleString()} - ${range.max.toLocaleString()})</h2>
-                               {filteredLogs.length === 0 ? (
-                                   <p className="text-gray-600">😔 No logs available in this range.</p>
-                               ) : (
-                                   <div className="space-y-4">
-                                       {filteredLogs.map((log) => {
-                                           const subRange = subRanges[log.id] || "N/A";
-                                           return (
-                                               <div key={log.id} className="border p-4 rounded">
-                                                   <p>🆔 ID: {log.id}</p>
-                                                   <p>🏦 Bank: {log.bank}</p>
-                                                   <p>💰 Balance: {subRange}</p>
-                                                   <p>💲 Price: ${log.price.toLocaleString()}</p>
-                                                   <p>📦 Stock: {log.stock} available</p>
-                                                   <button onClick={() => { setSelectedLog(log); setOrderId(generateOrderId()); setView("purchase"); console.log("Selected Log for Purchase:", log); }} className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 mt-2">🛒 Buy</button>
-                                               </div>
-                                           );
-                                       })}
-                                   </div>
-                               )}
-                               <button onClick={() => { setView("confirm_range"); console.log("Back to confirm range"); }} className="mt-4 w-full bg-gray-500 text-white py-2 rounded hover:bg-gray-600">🔙 Back</button>
-                           </div>
-                       );
-                   };
+                const showLogs = () => {
+                    if (!range) return <div className="text-red-600 p-4">Error: Range not set</div>;
+                    const filteredLogs = logs.filter((log) => log.category === category && log.bank === (bank || category) && log.balance >= range.min && log.balance <= range.max && log.stock > 0);
+                    console.log("Displaying Logs by Range:", filteredLogs, "SubRanges:", subRanges);
+                    return (
+                        <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+                            <h2 className="text-xl font-bold mb-4">📊 {bank || category} Logs (${range.min.toLocaleString()} - ${range.max.toLocaleString()})</h2>
+                            {filteredLogs.length === 0 ? (
+                                <p className="text-gray-600 p-4">😔 No logs available in this range.</p>
+                            ) : (
+                                <div className="space-y-4">
+                                    {filteredLogs.map((log) => {
+                                        const subRange = subRanges[log.id] || `${range.min.toLocaleString()} - $${range.max.toLocaleString()}`;
+                                        return (
+                                            <div key={log.id} className="border p-4 rounded">
+                                                <p>🆔 ID: {log.id}</p>
+                                                <p>🏦 Bank: {log.bank}</p>
+                                                <p>💰 Balance: {subRange}</p>
+                                                <p>💲 Price: ${log.price.toLocaleString()}</p>
+                                                <p>📦 Stock: {log.stock} available</p>
+                                                <button onClick={() => { setSelectedLog(log); setOrderId(generateOrderId()); setView("purchase"); }} className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 mt-2">🛒 Buy</button>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            )}
+                            <button onClick={() => setView("confirm_range")} className="mt-4 w-full bg-gray-500 text-white py-2 rounded hover:bg-gray-600">🔙 Back</button>
+                        </div>
+                    );
+                };
 
-                   const showPurchase = () => {
-                       if (!selectedLog) return <div className="text-red-600">Error: No log selected</div>;
-                       const currentLog = logs.find(log => log.id === selectedLog.id);
-                       if (!currentLog || currentLog.stock <= 0) {
-                           return (
-                               <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-                                   <h2 className="text-xl font-bold mb-4">🛒 Purchase Log</h2>
-                                   <p className="text-red-600">❌ This log is out of stock.</p>
-                                   <button onClick={() => { setView("logs"); console.log("Back to logs"); }} className="mt-4 w-full bg-gray-500 text-white py-2 rounded hover:bg-gray-600">🔙 Back</button>
-                               </div>
-                           );
-                       }
+                const showPurchase = () => {
+                    if (!selectedLog) return <div className="text-red-600 p-4">Error: No log selected</div>;
+                    const currentLog = logs.find(log => log.id === selectedLog.id);
+                    if (!currentLog || currentLog.stock <= 0) {
+                        return (
+                            <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+                                <h2 className="text-xl font-bold mb-4">🛒 Purchase Log</h2>
+                                <p className="text-red-600 p-4">❌ This log is out of stock.</p>
+                                <button onClick={() => setView("logs")} className="mt-4 w-full bg-gray-500 text-white py-2 rounded hover:bg-gray-600">🔙 Back</button>
+                            </div>
+                        );
+                    }
 
-                       return (
-                           <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-                               <h2 className="text-xl font-bold mb-4">🛒 Purchase Log</h2>
-                               <p>🏦 Bank: {currentLog.bank}</p>
-                               <p>💰 Balance: ${currentLog.balance.toLocaleString()}</p>
-                               <p>💲 Price: ${currentLog.price.toLocaleString()}</p>
-                               <p>🪙 Send {(currentLog.price / 106923.19).toFixed(6)} BTC to: {BTC_ADDRESS}</p>
-                               <p>🆔 Order ID: {orderId}</p>
-                               <p className="text-gray-600 mb-4">📩 Enter your email to receive details (mock delivery):</p>
-                               <input
-                                   type="email"
-                                   value={email}
-                                   onChange={(e) => { setEmail(e.target.value); console.log("Email input:", e.target.value); }}
-                                   placeholder="Enter your email"
-                                   className="w-full p-2 border rounded mb-4"
-                               />
-                               <button
-                                   onClick={() => {
-                                       if (email) {
-                                           const updatedLogs = logs.map(log =>
-                                               log.id === currentLog.id ? { ...log, stock: log.stock - 1 } : log
-                                           );
-                                           setLogs(updatedLogs);
-                                           alert(`🎉 Order ${orderId} confirmed! Details sent to ${email} (mock delivery). Verify payment at ${BTC_ADDRESS}.`);
-                                           console.log("Order confirmed:", { orderId, email, log: currentLog });
-                                           setView("categories");
-                                           setEmail("");
-                                       } else {
-                                           alert("❌ Please enter an email.");
-                                           console.log("Email missing");
-                                       }
-                                   }}
-                                   className="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600"
-                               >
-                                   ✅ Confirm Order
-                               </button>
-                               <button onClick={() => { setView("logs"); console.log("Back to logs"); }} className="mt-2 w-full bg-gray-500 text-white py-2 rounded hover:bg-gray-600">🔙 Back</button>
-                           </div>
-                       );
-                   };
+                    const btcAmount = (currentLog.price / 106923.19).toFixed(6);
+                    return (
+                        <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+                            <h2 className="text-xl font-bold mb-4">🛒 Purchase Log</h2>
+                            <p>🏦 Bank: {currentLog.bank}</p>
+                            <p>💰 Balance: ${currentLog.balance.toLocaleString()}</p>
+                            <p>💲 Price: ${currentLog.price.toLocaleString()}</p>
+                            <p>🪙 Send {btcAmount} BTC to: {BTC_ADDRESS}</p>
+                            <p>🆔 Order ID: {orderId || "Generating..."}</p>
+                            <p className="text-gray-600 mb-4">📩 Enter your email to receive details (mock delivery):</p>
+                            <input
+                                type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                placeholder="Enter your email"
+                                className="w-full p-2 border rounded mb-4"
+                            />
+                            <button
+                                onClick={() => {
+                                    if (email) {
+                                        const updatedLogs = logs.map(log =>
+                                            log.id === currentLog.id ? { ...log, stock: log.stock - 1 } : log
+                                        );
+                                        setLogs(updatedLogs);
+                                        alert(`🎉 Order ${orderId} confirmed! Details sent to ${email} (mock delivery). Verify payment at ${BTC_ADDRESS}.`);
+                                        setView("categories");
+                                        setEmail("");
+                                        setSelectedLog(null);
+                                        setOrderId(null);
+                                    } else {
+                                        alert("❌ Please enter an email.");
+                                    }
+                                }}
+                                className="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600"
+                            >
+                                ✅ Confirm Order
+                            </button>
+                            <button onClick={() => setView("logs")} className="mt-2 w-full bg-gray-500 text-white py-2 rounded hover:bg-gray-600">🔙 Back</button>
+                        </div>
+                    );
+                };
 
-                   console.log("Rendering App component...");
-                   return (
-                       <div className="flex flex-col items-center justify-center min-h-screen">
-                           {view === "categories" && showCategories()}
-                           {view === "banks" && showBanks()}
-                           {view === "ranges" && showRanges()}
-                           {view === "confirm_range" && confirmRange()}
-                           {view === "logs" && showLogs()}
-                           {view === "purchase" && showPurchase()}
-                       </div>
-                   );
-               };
+                console.log("Rendering App component...");
+                return (
+                    <div className="flex flex-col items-center justify-center min-h-screen">
+                        {view === "categories" && showCategories()}
+                        {view === "banks" && showBanks()}
+                        {view === "ranges" && showRanges()}
+                        {view === "confirm_range" && confirmRange()}
+                        {view === "logs" && showLogs()}
+                        {view === "purchase" && showPurchase()}
+                    </div>
+                );
+            };
 
-               console.log("Creating React root...");
-               const root = ReactDOM.createRoot(document.getElementById("root"));
-               console.log("Rendering App to root...");
-               root.render(<App />);
-               console.log("Render complete");
-           } catch (e) {
-               console.error("Error rendering app:", e);
-               document.getElementById("root").innerHTML = "<div class='text-red-600 p-4'>Error loading the application: " + e.message + ". Please check the console for details or try refreshing.</div>";
-           }
-       </script>
-   </body>
-   </html>
+            console.log("Creating React root...");
+            const root = ReactDOM.createRoot(document.getElementById("root"));
+            console.log("Rendering App to root...");
+            root.render(<App />);
+            console.log("Render complete");
+        } catch (e) {
+            console.error("Error rendering app:", e);
+            document.getElementById("root").innerHTML = `<div class='text-red-600 p-4'>Error loading the application: ${e.message}. Please check the console for details or try refreshing.</div>`;
+        }
+    </script>
+</body>
+</html>
